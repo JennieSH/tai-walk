@@ -4,6 +4,7 @@ const theme = {
     secondary: "#6E7D60",
     border: "#E5E5E5",
     active: "#65895F",
+    focus: "#E0DA48",
     white: "#ffffff",
     transparent: "transparent",
     "gary-50": "#F9F9F9",
