@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <NavLink to="/">
-        <Icon name="logo" width="240px" />
+        <Icon name="logo-pc" width="240px" />
       </NavLink>
 
       {/* PC Menu */}
@@ -50,7 +50,7 @@ const Header = () => {
           <ul>
             <li className="mb-logo">
               <NavLink to="/" onClick={() => setMobileMenu(!isMobileMenuShow)}>
-                <Icon name="logo" width="180px" />
+                <Icon name="logo-mb" width="120px" />
               </NavLink>
               <Icon
                 name="close"
