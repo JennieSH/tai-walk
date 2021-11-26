@@ -1,10 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import viteSvgIcons from "vite-plugin-svg-icons";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteSvgIcons({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
+      // Specify symbolId format
+      symbolId: "[name]"
+    })
+  ],
   resolve: {
     alias: {
       "@/": path.resolve(__dirname, "./src"),
