@@ -1,8 +1,9 @@
 import { css } from "@emotion/react";
 import emotionNormalize from "emotion-normalize";
-import { ThemeType } from "./theme";
+import { theme, ThemeType } from "./theme";
+import "./fonts.css";
 
-const globalStyle = (theme: ThemeType) => {
+const generateGlobalStyle = (theme: ThemeType) => {
   return css`
     ${emotionNormalize}
     html,
@@ -16,4 +17,6 @@ const globalStyle = (theme: ThemeType) => {
   `;
 };
 
-export default globalStyle;
+const globalStyle = generateGlobalStyle(theme);
+
+export { theme, globalStyle };

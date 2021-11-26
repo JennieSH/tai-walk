@@ -3,14 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 // style
 import { ThemeProvider, Global } from "@emotion/react";
-import globalStyle from "./styles/index";
-import { theme } from "./styles/theme";
-import "@/styles/fonts.css";
+import { theme, globalStyle } from "@/styles";
+// svg
+import "virtual:svg-icons-register";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <Global styles={globalStyle(theme)} />
+      <Global styles={globalStyle} />
       <App />
     </ThemeProvider>
   </React.StrictMode>,

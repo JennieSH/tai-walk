@@ -3,7 +3,7 @@ const theme = {
     primary: "#7F977B",
     secondary: "#6E7D60",
     border: "#E5E5E5",
-    green: "#65895F",
+    active: "#65895F",
     white: "#ffffff",
     transparent: "transparent",
     "gary-50": "#F9F9F9",
@@ -43,9 +43,9 @@ const theme = {
     "2xl": "1536px"
   },
   borderRadius: {
-    none: "0px",
-    sm: "0.125rem",
-    DEFAULT: "0.25rem",
+    xs: "0.125rem",
+    sm: "0.25rem",
+    default: "0.3125rem",
     md: "0.375rem",
     lg: "0.5rem",
     xl: "0.75rem",
