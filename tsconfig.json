@@ -24,7 +24,8 @@
       "@/assets/*": ["./src/assets/*"],
       "@/pages/*": ["./src/pages/*"],
       "@/hooks/*": ["./src/hooks/*"],
-      "@/context/*": ["./src/context/*"]
+      "@/context/*": ["./src/context/*"],
+      "@/config/*": ["./src/config/*"]
     },
   },
   "include": ["./src"],
