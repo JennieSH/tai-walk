@@ -5,5 +5,5 @@ export const StyledFooter = styled.footer`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme }) => theme.color.white};
-  background-color: ${({ theme }) => theme.color.green};
+  background-color: ${({ theme }) => theme.color["gary-100"]};
 `;
