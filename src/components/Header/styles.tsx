@@ -65,6 +65,7 @@ const StyledMbMenu = styled.nav`
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 10;
   flex-direction: column;
   align-items: flex-end;
   justify-content: end;
