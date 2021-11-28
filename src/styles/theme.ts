@@ -6,7 +6,10 @@ const theme = {
     active: "#65895F",
     focus: "#E0DA48",
     white: "#ffffff",
+    red: "#FF725E",
     transparent: "transparent",
+    "green-50": "#E0DA48",
+    "green-100": "#65895F",
     "gary-50": "#F9F9F9",
     "gary-100": "#9E9E9E",
     "gary-200": "#737373",
@@ -34,7 +37,9 @@ const theme = {
     // 36px
     "5xl": "2.25rem",
     // 40px
-    "6xl": "2.5rem"
+    "6xl": "2.5rem",
+    // 48px
+    "7xl": "3rem"
   },
   screens: {
     sm: "640px",

@@ -29,6 +29,45 @@ const generateGlobalStyle = (theme: ThemeType) => {
     a {
       text-decoration: none;
     }
+
+    input {
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    #root {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .container {
+      flex: 1 1 auto;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+      box-sizing: border-box;
+
+      @media (min-width: ${theme.screens.sm}) {
+        max-width: 640px;
+      }
+
+      @media (min-width: ${theme.screens.md}) {
+        max-width: 768px;
+      }
+
+      @media (min-width: ${theme.screens.lg}) {
+        max-width: 1024px;
+      }
+
+      @media (min-width: ${theme.screens.xl}) {
+        max-width: 1280px;
+      }
+
+      @media (min-width: ${theme.screens["2xl"]}) {
+        max-width: 1536px;
+      }
+    }
   `;
 };
 
