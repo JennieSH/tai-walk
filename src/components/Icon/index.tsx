@@ -1,9 +1,10 @@
-import { StyledIcon } from "./style";
-import { IconProps } from "./type";
+import { StyledIcon } from "./styles";
+import { IconProps } from "./types";
 
-const Icon = ({ name, width, height, color, clickHandler }: IconProps) => {
+const Icon = ({ name, width, height, color, className, clickHandler }: IconProps) => {
   return (
     <StyledIcon
+      className={className}
       width={width}
       height={height}
       color={color}
