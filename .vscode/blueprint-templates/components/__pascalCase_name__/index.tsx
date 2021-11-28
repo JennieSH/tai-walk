@@ -1,5 +1,5 @@
-import { Styled{{pascalCase name}} } from "./style";
-import { {{pascalCase name}}Props } from "./type";
+import { Styled{{pascalCase name}} } from "./styles";
+import { {{pascalCase name}}Props } from "./types";
 
 const {{pascalCase name}} = () => {
   return (
