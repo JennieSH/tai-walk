@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import { NavLink } from "react-router-dom";
-import navigationList from "@/config/navigationList";
+import navigationList from "@/constants/navigationList";
 import Icon from "@/components/Icon";
-import { StyledHeader, StyledPCMenu, StyledBurger, StyledMbMenu } from "./style";
+import { StyledHeader, StyledPCMenu, StyledBurger, StyledMbMenu } from "./styles";
 
 const Header = () => {
   const [isMobileMenuShow, setMobileMenu] = useState(false);
