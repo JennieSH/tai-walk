@@ -24,6 +24,7 @@ const generateGlobalStyle = (theme: ThemeType) => {
 
     li {
       list-style: none;
+      box-sizing: border-box;
     }
 
     a {
