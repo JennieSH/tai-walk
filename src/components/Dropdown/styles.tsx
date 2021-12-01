@@ -3,11 +3,15 @@ import styled from "@emotion/styled";
 export const StyledDropdown = styled.div`
   position: relative;
   cursor: pointer;
+  width: 100%;
 
   button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 50px;
-    padding: 0 30px;
+    padding: 0 16px 0 30px;
     text-align: start;
     color: ${({ theme }) => theme.color.secondary};
     background-color: ${({ theme }) => theme.color.white};
@@ -21,10 +25,11 @@ export const StyledDropdown = styled.div`
     position: absolute;
     width: 100%;
     margin-top: 10px;
+    max-height: 450px;
     background-color: ${({ theme }) => theme.color.white};
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: ${({ theme }) => theme.borderRadius.default};
-    overflow: hidden;
+    overflow-y: scroll;
   }
 
   li {
@@ -39,11 +44,5 @@ export const StyledDropdown = styled.div`
     &:hover {
       background-color: rgba(127, 151, 123, 0.2);
     }
-  }
-
-  .arrow {
-    position: absolute;
-    right: 16px;
-    top: 12px;
   }
 `;

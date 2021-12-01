@@ -3,7 +3,7 @@ import { StyledDropdown } from "./styles";
 import { DropdownProps } from "./types";
 import Icon from "@/components/Icon";
 
-const Dropdown = ({ list, value, setValue }: DropdownProps) => {
+const Dropdown = ({ list, value, className, setValue }: DropdownProps) => {
   const [isDropdownListShow, toggleDropdownList] = useState(false);
   const menuHandler = (val: string) => {
     setValue(val);
@@ -11,13 +11,17 @@ const Dropdown = ({ list, value, setValue }: DropdownProps) => {
   };
 
   return (
-    <StyledDropdown>
-      <button onClick={() => toggleDropdownList(!isDropdownListShow)}>{value}</button>
-      <Icon
-        className="arrow"
-        name={isDropdownListShow ? "arrow-up" : "arrow-down"}
-        clickHandler={() => toggleDropdownList(!isDropdownListShow)}
-      />
+    <StyledDropdown className={className}>
+      <button onClick={() => toggleDropdownList(!isDropdownListShow)}>
+        {value}
+        <Icon
+          width="20px"
+          height="20px"
+          name={isDropdownListShow ? "arrow-up" : "arrow-down"}
+          clickHandler={() => toggleDropdownList(!isDropdownListShow)}
+        />
+      </button>
+
       {isDropdownListShow && (
         <ul>
           {list.map(item => (
