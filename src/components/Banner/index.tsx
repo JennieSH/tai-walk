@@ -1,16 +1,29 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 import { StyledBanner } from "./styles";
 import Icon from "@/components/Icon";
 import Dropdown from "@/components/Dropdown";
 import SearchBtn from "@/components/SearchBtn";
 import Input from "@/components/Input";
 import navigationList from "@/constants/navigationList";
+import { CategoryMap } from "@/types/category";
 
 const categoryList = navigationList.map(item => item.text);
 
 const Banner = () => {
   const [category, setCategory] = useState(categoryList[0]);
   const [keyword, setKeyword] = useState("");
+  const history = useHistory();
+
+  const onSearch = () => {
+    let path: string;
+    if (keyword) {
+      path = `/${CategoryMap[category]}?keyword=${keyword}`;
+    } else {
+      path = `/${CategoryMap[category]}`;
+    }
+    history.push(path);
+  };
 
   return (
     <StyledBanner>
@@ -34,7 +47,7 @@ const Banner = () => {
           value={keyword}
           changeHandler={e => setKeyword(e.target.value)}
         />
-        <SearchBtn />
+        <SearchBtn clickHandler={onSearch} />
       </div>
     </StyledBanner>
   );
