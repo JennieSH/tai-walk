@@ -8,8 +8,15 @@ const Input = ({
   className,
   backgroundColor,
   clickHandler,
-  changeHandler
+  changeHandler,
+  enterHandler
 }: InputProps) => {
+  const keydownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      enterHandler && enterHandler(e);
+    }
+  };
+
   return (
     <StyledInput
       type={type}
@@ -19,6 +26,7 @@ const Input = ({
       backgroundColor={backgroundColor}
       onClick={clickHandler}
       onChange={changeHandler}
+      onKeyDown={keydownHandler}
     />
   );
 };

@@ -8,6 +8,7 @@ interface InputProps {
   backgroundColor?: string;
   clickHandler?: () => void;
   changeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  enterHandler?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 type StyledInputProps = Pick<InputProps, "backgroundColor">;
