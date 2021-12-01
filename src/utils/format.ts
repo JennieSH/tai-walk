@@ -5,11 +5,12 @@ import dayjs from "dayjs";
  * () => ""
  * (2021/11/11) => "2021/11/11"
  * (2021-11-11T00:00:00.000Z) => "2021/11/11"
+ * (2021/11/11, "YYYY-MM-DD") => "2021-11-11"
  */
-const formatTime = (time?: Date | string | number) => {
+const formatTime = (time?: Date | string | number | null, formatType = "YYYY/MM/DD") => {
   if (!time) return "";
 
-  return dayjs(time).format("YYYY/MM/DD");
+  return dayjs(time).format(formatType);
 };
 
 /**
