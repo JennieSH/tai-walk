@@ -2,25 +2,28 @@ import { StyledCard } from "./styles";
 import type { CardProps } from "./types";
 import Icon from "@/components/Icon";
 import { formatTitle } from "@/utils/format";
+import { Link } from "react-router-dom";
 
 const maxTitleCount = 15;
 
-const Card = ({ card }: CardProps) => {
+const Card = ({ card, className, category }: CardProps) => {
   return (
-    <StyledCard>
-      <div className="card-img">
-        <img
-          src={card.Picture.PictureUrl1}
-          alt={card.Picture.PictureDescription1}
-          title={card.Picture.PictureDescription1}
-        />
-      </div>
+    <StyledCard className={className}>
+      <Link to={`/${category}/${card.ID}`} title={card.Name}>
+        <div className="card-img">
+          <img
+            src={card.Picture.PictureUrl1}
+            alt={card.Picture.PictureDescription1}
+            title={card.Picture.PictureDescription1}
+          />
+        </div>
 
-      <h3 className="card-title">{formatTitle(maxTitleCount, card.Name)}</h3>
-      <div className="card-spot">
-        <Icon name="spot-line" width="16px" />
-        <span>{card.City}</span>
-      </div>
+        <h3 className="card-title">{formatTitle(maxTitleCount, card.Name)}</h3>
+        <div className="card-spot">
+          <Icon name="spot-line" width="16px" />
+          <span>{card.City}</span>
+        </div>
+      </Link>
     </StyledCard>
   );
 };

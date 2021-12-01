@@ -54,6 +54,7 @@ export const StyledCard = styled.div`
 
       > span {
         margin-left: 4px;
+        color: ${({ theme }) => theme.color["gary-300"]};
       }
     }
   }
