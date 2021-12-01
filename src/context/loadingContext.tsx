@@ -11,7 +11,7 @@ type LoadingContextProviderProps = {
 
 type LoadingAction = { type: Loading_Action_Type.OFF | Loading_Action_Type.ON };
 
-const initState = true;
+const initState = false;
 
 const LoadingContext = createContext<{
   loadingState: boolean;
