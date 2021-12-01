@@ -1,21 +1,23 @@
 import styled from "@emotion/styled";
 
 export const StyledActivityCard = styled.div`
-  display: flex;
-  height: 160px;
-  color: ${({ theme }) => theme.color["gary-300"]};
-  border: 1px solid ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius["3xl"]};
-  overflow: hidden;
+  > a {
+    display: flex;
+    height: 160px;
+    color: ${({ theme }) => theme.color["gary-300"]};
+    border: 1px solid ${({ theme }) => theme.color.border};
+    border-radius: ${({ theme }) => theme.borderRadius["3xl"]};
+    overflow: hidden;
 
-  :hover {
-    img {
-      transform: scale(1.1);
+    :hover {
+      img {
+        transform: scale(1.1);
+      }
     }
-  }
 
-  @media (max-width: ${({ theme }) => theme.screens.lg}) {
-    font-size: ${({ theme }) => theme.fontSize.xs};
+    @media (max-width: ${({ theme }) => theme.screens.lg}) {
+      font-size: ${({ theme }) => theme.fontSize.xs};
+    }
   }
 
   .card {
