@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 
 export const StyledCategory = styled.section`
+  padding: 16px;
+
   h2 {
     font-size: ${({ theme }) => theme.fontSize["5xl"]};
     font-weight: ${({ theme }) => theme.fontWeight.light};
