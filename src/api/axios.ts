@@ -4,7 +4,8 @@ import type { ApiParameter } from "./types";
 
 const axiosApi = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
-  headers: getAuthorizationHeader()
+  headers: getAuthorizationHeader(),
+  validateStatus: status => status >= 200 && status < 400
 });
 
 const apiGet = async <T>(url: string, params?: ApiParameter): Promise<T> => {
@@ -13,14 +14,14 @@ const apiGet = async <T>(url: string, params?: ApiParameter): Promise<T> => {
     ...params
   }).toString();
 
-  const response = await axiosApi(`${url}?${searchParams}`);
+  const response = await axiosApi(`${url}?${searchParams}`)
+    .then(res => res.data)
+    .catch(err => {
+      console.error(err);
+      alert(err);
+    });
 
-  if (response.status === 200) {
-    return response.data;
-  }
-
-  console.log(response);
-  throw new Error(response.statusText);
+  return response;
 };
 
 export { apiGet };
