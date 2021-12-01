@@ -5,7 +5,7 @@ export const StyledSearchBtn = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 11px;
+  padding: 10px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.default};
   background-color: ${({ theme }) => theme.color.primary};

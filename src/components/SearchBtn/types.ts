@@ -1,4 +1,5 @@
 interface SearchBtnProps {
+  className?: string;
   clickHandler?: () => void;
 }
 
