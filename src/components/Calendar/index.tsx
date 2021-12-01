@@ -5,18 +5,17 @@ import { CalendarProps } from "./types";
 import Icon from "@/components/Icon";
 import { formatTime } from "@/utils/format";
 
-const Calendar = ({ className }: CalendarProps) => {
+const Calendar = ({ className, date, changeHandler }: CalendarProps) => {
   const [isCalendarShow, setCalendarShow] = useState(false);
-  const [date, setDate] = useState(new Date());
-
   const dateHandler = (value: Date) => {
-    setDate(value);
+    changeHandler(value);
     setCalendarShow(!isCalendarShow);
   };
+
   return (
     <StyledCalendar className={className}>
       <button className="calendar-input" onClick={() => setCalendarShow(!isCalendarShow)}>
-        {formatTime(date)}
+        {date ? formatTime(date) : "選擇日期"}
         <Icon name="calendar" width="20px" height="20px" />
       </button>
 
