@@ -11,24 +11,13 @@ import Dropdown from "@/components/Dropdown";
 import Breadcrumb from "@/components/Breadcrumb";
 import useQuery from "@/hooks/useQuery";
 import { useTourismApi, SearchType } from "@/hooks/useTourismApi";
+import type { SearchParams, QueryCityType, SearchDataType } from "./types";
 import { Category as CategoryEnum } from "@/types/category";
 import { City, CityMap, CityTextMap } from "@/types/city";
 import type { CityText } from "@/types/city";
-import type { CategoryType } from "@/types/category";
-import type {
-  ActivityCard as ActivityCardType,
-  ScenicSpotCard as ScenicSpotCardType,
-  RestaurantCard as RestaurantCardType
-} from "@/types/tourism";
 import { cityTextList } from "@/constants/city";
 import { categoryPlaceholder } from "@/constants/categoryList";
 import { formatTime } from "@/utils/format";
-
-type SearchParams = {
-  category: CategoryType;
-};
-type QueryCityType = keyof typeof CityTextMap;
-type SearchDataType = ActivityCardType | ScenicSpotCardType | RestaurantCardType;
 
 const Search = () => {
   const [cityInput, setCityInput] = useState<CityText | null>(null);
@@ -36,7 +25,7 @@ const Search = () => {
   const [keywordInput, setKeywordInput] = useState("");
   const [searchData, setSearchData] = useState<SearchDataType[] | null>(null);
   const { category } = useParams<SearchParams>();
-  const { query, routerPush } = useQuery(["city", "date", "keyword"]);
+  const { query, routerPush } = useQuery(["city", "date", "keyword", "position"]);
   const { fetchTourismData } = useTourismApi();
 
   const onSearch = () => {
@@ -50,14 +39,16 @@ const Search = () => {
   const fetchSearchData = async (
     city: City | null,
     date: string | null,
-    keyword: string | null
+    keyword: string | null,
+    position: string | null
   ) => {
     const data = await fetchTourismData<SearchDataType>({
       page: SearchType.MULTIPLE,
       category: category,
       city: city,
       keyword: keyword,
-      date: date
+      date: date,
+      position: position
     });
 
     setSearchData(data);
@@ -71,11 +62,11 @@ const Search = () => {
   }, [category]);
 
   useEffect(() => {
-    const { city, date, keyword } = query;
-    if (city || date || keyword) {
-      fetchSearchData(city as City, date, keyword);
+    const { city, date, keyword, position } = query;
+    if (city || date || keyword || position) {
+      fetchSearchData(city as City, date, keyword, position);
     }
-  }, [query.city, query.date, query.keyword]);
+  }, [query.city, query.date, query.keyword, query.position]);
 
   return (
     <StyledSearch className="container">

@@ -19,6 +19,7 @@ type TourismPayload = {
   city?: City | null;
   keyword?: string | null;
   date?: string | null;
+  position?: string | null;
   id?: string;
 };
 
@@ -103,7 +104,7 @@ const getTargetApi = (category: Category, city?: City | null) => {
 };
 
 const getTargetParams = (payload: TourismPayload): ApiParameter | ApiCityParameter => {
-  const { page, category, city, keyword, date, id } = payload;
+  const { page, category, city, keyword, date, id, position } = payload;
   let targetParams: ApiParameter | ApiCityParameter = apiParams[page][category];
   const filterConditions: string[] = [baseFilter];
 
@@ -113,6 +114,8 @@ const getTargetParams = (payload: TourismPayload): ApiParameter | ApiCityParamet
 
   if (date && category === Category.ACTIVITY)
     filterConditions.push(`(date(StartTime) le ${date} and date(EndTime) ge ${date})`);
+
+  if (position) targetParams = { ...targetParams, $spatialFilter: `nearby(${position})` };
 
   if (id) filterConditions.push(`ID eq '${id}'`);
 

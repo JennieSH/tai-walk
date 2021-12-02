@@ -177,4 +177,4 @@ interface ActivityTourismInfo {
   UpdateTime: string;
 }
 
-export type { ScenicSpotTourismInfo, RestaurantTourismInfo, ActivityTourismInfo };
+export type { ScenicSpotTourismInfo, RestaurantTourismInfo, ActivityTourismInfo, PointType };
