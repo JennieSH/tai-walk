@@ -25,7 +25,6 @@ type TourismPayload = {
 
 const baseSearchCount = 4;
 const detailSearchCount = 1;
-const tempMultipleCount = 99;
 const baseFilter = "Picture/PictureUrl1 ne null and City ne null";
 const baseOrderBy = "UpdateTime desc";
 const baseSelect = "ID,Name,Address,Picture,City";
@@ -54,19 +53,16 @@ const apiParams: PageComponentParams = {
 
   [SearchType.MULTIPLE]: {
     [Category.ACTIVITY]: {
-      $top: tempMultipleCount.toString(),
       $select: "ID,Name,City,Picture",
       $filter: baseFilter,
       $orderBy: baseOrderBy
     },
     [Category.SCENIC_SPOT]: {
-      $top: tempMultipleCount.toString(),
       $select: baseSelect,
       $filter: baseFilter,
       $orderBy: `${baseOrderBy},OpenTime asc`
     },
     [Category.RESTAURANT]: {
-      $top: tempMultipleCount.toString(),
       $select: baseSelect,
       $filter: baseFilter,
       $orderBy: "OpenTime asc"
