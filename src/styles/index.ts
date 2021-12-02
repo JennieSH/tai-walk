@@ -14,6 +14,7 @@ const generateGlobalStyle = (theme: ThemeType) => {
       background: ${theme.color.white};
       min-height: 100%;
       font-family: ${theme.fontFamily["noto-sans"]}, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
     }
 
     ul {
