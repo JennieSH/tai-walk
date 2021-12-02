@@ -27,6 +27,7 @@ export const StyledSearchList = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-bottom: 60px;
 
     .card-img {
       @media (max-width: ${({ theme }) => theme.screens.md}) {
