@@ -1,4 +1,4 @@
-import type { ScenicSpotCard } from "@/types/scenic-spot";
+import type { ScenicSpotCard } from "@/types/tourism";
 import type { CategoryType } from "@/types/category";
 
 interface SearchListProps {

@@ -1,4 +1,4 @@
-import type { ActivityCard } from "@/types/activity";
+import type { ActivityCard } from "@/types/tourism";
 import type { CategoryType } from "@/types/category";
 
 interface ActivityCardProps {
