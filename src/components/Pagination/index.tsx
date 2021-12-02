@@ -48,7 +48,7 @@ const Pagination = ({
       <ul className="pagination-list">
         {getPageList().map(page => (
           <li
-            key={page}
+            key={`page-${page}`}
             className={page === currentPage ? "pagination-page active" : "pagination-page"}
             onClick={() => pageHandler(page)}
           >

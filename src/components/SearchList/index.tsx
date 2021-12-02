@@ -28,11 +28,9 @@ const SearchList = ({ searchList, category }: SearchListProps) => {
             </p>
           </div>
         ) : (
-          searchList
-            .slice(0, 8)
-            .map(item => (
-              <Card className="search-card" key={item.ID} card={item} category={category} />
-            ))
+          searchList.map(item => (
+            <Card className="search-card" key={`card-${item.ID}`} card={item} category={category} />
+          ))
         )}
       </div>
 

@@ -24,7 +24,7 @@ const Category = ({ category }: CategoryProps) => {
           <Link
             to={`/${category}?keyword=${subject.keyword}`}
             className="category-item"
-            key={subject.text}
+            key={`category-${subject.text}`}
             style={{
               backgroundImage: `url(${images[categoryType][subject.path].default})`
             }}

@@ -25,7 +25,7 @@ const Dropdown = ({ list, value, className, setValue }: DropdownProps) => {
       {isDropdownListShow && (
         <ul>
           {list.map(item => (
-            <li key={item} onClick={() => menuHandler(item)}>
+            <li key={`dropdown-${item}`} onClick={() => menuHandler(item)}>
               {item}
             </li>
           ))}

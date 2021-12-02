@@ -30,7 +30,7 @@ const Carousel = () => {
     <StyledCarousel>
       {carouselList.map((item, index) => (
         <div
-          key={item.title}
+          key={`carousel-${item.title}`}
           className={index === currentIndex ? "slide active" : "slide"}
           style={{ backgroundImage: `url(${item.url})` }}
         >
