@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const StyledInformation = styled.div`
   display: flex;
+  align-items: flex-start;
   margin-top: 60px;
   letter-spacing: 0.05rem;
   line-height: 30px;
@@ -12,6 +13,7 @@ export const StyledInformation = styled.div`
 
   .block {
     width: 100%;
+    min-height: 300px;
     padding: 30px;
     border-radius: ${({ theme }) => theme.borderRadius.xl};
     background-color: ${({ theme }) => theme.color["gary-50"]};
@@ -41,15 +43,64 @@ export const StyledInformation = styled.div`
     }
   }
 
-  .map {
+  .position {
     width: 100%;
-    height: 200px;
     margin-left: 30px;
-    border-radius: ${({ theme }) => theme.borderRadius.xl};
-    background-color: ${({ theme }) => theme.color["green-50"]};
 
     @media (max-width: ${({ theme }) => theme.screens.lg}) {
       margin: 30px 0 0 0;
+    }
+
+    h2 {
+      color: ${({ theme }) => theme.color["gary-500"]};
+      font-size: ${({ theme }) => theme.fontSize.lg};
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 30px;
+      padding: 30px 0;
+      letter-spacing: 3px;
+      color: ${({ theme }) => theme.color.primary};
+      border: 1px solid ${({ theme }) => theme.color.border};
+      border-radius: ${({ theme }) => theme.borderRadius.md};
+      font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
+      &:hover {
+        svg {
+          color: ${({ theme }) => theme.color["green-50"]};
+          transform: scale(1.05);
+        }
+      }
+
+      @media (max-width: ${({ theme }) => theme.screens.lg}) {
+        margin: 12px 0 0 0;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+
+    svg {
+      color: ${({ theme }) => theme.color.border};
+      transition: scale 0.2s ease-in;
+    }
+
+    &-info {
+      display: flex;
+
+      @media (max-width: ${({ theme }) => theme.screens.lg}) {
+        flex-direction: column;
+      }
     }
   }
 `;

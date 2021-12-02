@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { StyledInformation } from "./styles";
 import type {
   InformationProps,
@@ -7,10 +8,13 @@ import type {
   InfoData
 } from "./types";
 import { ScenicSpotTextMap, ActivityTextMap, RestaurantTextMap } from "./types";
+import Routes from "@/types/routes";
 import { Category } from "@/types/category";
 import type { CategoryType } from "@/types/category";
 import type { TourismDetailInfo } from "@/types/tourism";
 import { formatTime } from "@/utils/format";
+import Map from "@/components/Map";
+import Icon from "@/components/Icon";
 
 const restaurantKeys: RestaurantKey[] = ["OpenTime", "Phone", "Address", "WebsiteUrl"];
 const activityKeys: ActivityKey[] = [
@@ -118,6 +122,8 @@ const formatInfoText = (category: CategoryType, informationData: TourismDetailIn
 
 const Information = ({ category, informationData }: InformationProps) => {
   const infoList = formatInfoText(category, informationData);
+  const position = informationData.Position;
+
   return (
     <StyledInformation>
       <div className="block">
@@ -138,7 +144,37 @@ const Information = ({ category, informationData }: InformationProps) => {
         })}
       </div>
 
-      <div className="map"></div>
+      {informationData.Position && (
+        <div className="position">
+          <Map position={informationData.Position} />
+          <div>
+            <h2>周邊資訊：</h2>
+            <div className="position-info">
+              <Link
+                to={`${Routes.SCENIC_SPOT}?position=${position?.PositionLat},${position?.PositionLon},5000`}
+                title="附近景點"
+              >
+                <Icon name="scenic" />
+                <span>附近景點</span>
+              </Link>
+              <Link
+                to={`${Routes.ACTIVITY}?position=${position?.PositionLat},${position?.PositionLon},5000`}
+                title="附近活動"
+              >
+                <Icon name="activity" />
+                <span>附近活動</span>
+              </Link>
+              <Link
+                to={`${Routes.RESTAURANT}?position=${position?.PositionLat},${position?.PositionLon},5000`}
+                title="附近美食"
+              >
+                <Icon name="restaurant" />
+                <span>附近美食</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </StyledInformation>
   );
 };
