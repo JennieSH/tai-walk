@@ -5,8 +5,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:script": "eslint --ext .ts --ignore-path .gitignore ."
   },
+  "homepage": "https://jenniesh.github.io/tai-walk",
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
