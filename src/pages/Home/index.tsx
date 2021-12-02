@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { StyledHome, StyledActivityCardList, StyledCardList } from "./styles";
 import Banner from "@/components/Banner";
@@ -6,61 +6,48 @@ import Icon from "@/components/Icon";
 import Carousel from "@/components/Carousel";
 import ActivityCard from "@/components/ActivityCard";
 import Card from "@/components/Card";
-import tourismApi from "@/api/tourism";
+import { useTourismApi, SearchType } from "@/hooks/useTourismApi";
 import { Category } from "@/types/category";
-import type { ActivityCard as ActivityCardType } from "@/types/activity";
-import type { ScenicSpotCard as ScenicSpotCardType } from "@/types/scenic-spot";
-import type { RestaurantCard as RestaurantCardType } from "@/types/restaurant";
-import { LoadingContext, Loading_Action_Type } from "@/context/loadingContext";
-
-const homeSearchCount = 4;
+import type {
+  ActivityCard as ActivityCardType,
+  ScenicSpotCard as ScenicSpotCardType,
+  RestaurantCard as RestaurantCardType
+} from "@/types/tourism";
 
 const Home = () => {
   const [activityData, setActivityData] = useState<ActivityCardType[]>([]);
   const [scenicSpotData, setScenicSpotData] = useState<ScenicSpotCardType[]>([]);
   const [restaurantData, setRestaurantData] = useState<RestaurantCardType[]>([]);
-  const { loadingDispatch } = useContext(LoadingContext);
+  const { fetchTourismData } = useTourismApi();
 
   useEffect(() => {
     const fetchActivity = async () => {
-      loadingDispatch({ type: Loading_Action_Type.ON });
-      const data = await tourismApi.getActivity<ActivityCardType[]>({
-        $top: (4).toString(),
-        $select: "ID,Name,City,Picture",
-        $filter: "Picture/PictureUrl1 ne null",
-        $orderBy: "StartTime desc"
+      const data = await fetchTourismData<ActivityCardType>({
+        page: SearchType.BASE,
+        category: Category.ACTIVITY
       });
       setActivityData(data);
-      loadingDispatch({ type: Loading_Action_Type.OFF });
     };
 
     const fetchScenicSpot = async () => {
-      loadingDispatch({ type: Loading_Action_Type.ON });
-      const data = await tourismApi.getScenicSpot<ScenicSpotCardType[]>({
-        $top: homeSearchCount.toString(),
-        $select: "ID,Name,Address,Picture,City",
-        $filter: "Picture/PictureUrl1 ne null and City ne null",
-        $orderBy: "UpdateTime desc,OpenTime asc"
+      const data = await fetchTourismData<ScenicSpotCardType>({
+        page: SearchType.BASE,
+        category: Category.SCENIC_SPOT
       });
-      loadingDispatch({ type: Loading_Action_Type.OFF });
       setScenicSpotData(data);
     };
 
-    const fetchRestaurantData = async () => {
-      loadingDispatch({ type: Loading_Action_Type.ON });
-      const data = await tourismApi.getRestaurant<RestaurantCardType[]>({
-        $top: homeSearchCount.toString(),
-        $select: "ID,Name,Address,Picture,City",
-        $filter: "Picture/PictureUrl1 ne null and City ne null",
-        $orderBy: "UpdateTime desc,OpenTime desc"
+    const fetchRestaurant = async () => {
+      const data = await fetchTourismData<RestaurantCardType>({
+        page: SearchType.BASE,
+        category: Category.RESTAURANT
       });
-      loadingDispatch({ type: Loading_Action_Type.OFF });
       setRestaurantData(data);
     };
 
     fetchActivity();
     fetchScenicSpot();
-    fetchRestaurantData();
+    fetchRestaurant();
   }, []);
 
   return (
@@ -82,7 +69,7 @@ const Home = () => {
           {activityData.length &&
             activityData.map(activity => (
               <ActivityCard
-                key={activity.ID}
+                key={`ac-${activity.ID}`}
                 activityCard={activity}
                 category={Category.ACTIVITY}
               />
@@ -102,7 +89,7 @@ const Home = () => {
         <div className="spot-list">
           {scenicSpotData.length &&
             scenicSpotData.map(spot => (
-              <Card key={spot.ID} card={spot} category={Category.SCENIC_SPOT} />
+              <Card key={`spot-${spot.ID}`} card={spot} category={Category.SCENIC_SPOT} />
             ))}
         </div>
       </StyledCardList>
@@ -119,7 +106,11 @@ const Home = () => {
         <div className="spot-list">
           {restaurantData.length &&
             restaurantData.map(restaurant => (
-              <Card key={restaurant.ID} card={restaurant} category={Category.RESTAURANT} />
+              <Card
+                key={`restaurant-${restaurant.ID}`}
+                card={restaurant}
+                category={Category.RESTAURANT}
+              />
             ))}
         </div>
       </StyledCardList>
