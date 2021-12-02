@@ -9,9 +9,9 @@ import { Category, validCategory } from "@/types/category";
 import Loading from "./components/Loading";
 import { LoadingProvider } from "@/context/loadingContext";
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <LoadingProvider>
         <Header />
         <Loading />
@@ -41,6 +41,6 @@ function App() {
       </LoadingProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

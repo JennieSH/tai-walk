@@ -4,7 +4,8 @@ import path from "path";
 import viteSvgIcons from "vite-plugin-svg-icons";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
+  base: mode === "production" ? "/tai-walk/" : "/",
   plugins: [
     react(),
     viteSvgIcons({
@@ -30,4 +31,4 @@ export default defineConfig({
       "@/types": path.resolve(__dirname, "./src/types")
     }
   }
-});
+}));
