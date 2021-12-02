@@ -14,5 +14,11 @@ enum RecommendTextMap {
   "restaurant" = "還有這些不能錯過的美食"
 }
 
+enum RecommendLinkTextMap {
+  "activity" = "活動",
+  "scenic-spot" = "景點",
+  "restaurant" = "美食"
+}
+
 export type { SearchParams, ClassKey };
-export { RecommendTextMap };
+export { RecommendTextMap, RecommendLinkTextMap };

@@ -6,7 +6,7 @@ import Icon from "@/components/Icon";
 import Information from "@/components/Information";
 import Card from "@/components/Card";
 import type { SearchParams, ClassKey } from "./types";
-import { RecommendTextMap } from "./types";
+import { RecommendTextMap, RecommendLinkTextMap } from "./types";
 import type { CityText } from "@/types/city";
 import { CityMap } from "@/types/city";
 import type { TourismBaseCard, TourismDetailInfo } from "@/types/tourism";
@@ -31,7 +31,7 @@ const Detail = () => {
       setDetailData(data[0]);
     };
     fetchDetailData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchRecommendData = async () => {
@@ -83,8 +83,14 @@ const Detail = () => {
             <div className="recommend">
               <div className="recommend-title">
                 <h2>{RecommendTextMap[category]}</h2>
-                <Link to="/scenic-spot" className="recommend-link">
-                  <span>查看更多{detailData.City}景點</span>
+                <Link
+                  to={`/${category}?city=${CityMap[detailData?.City as CityText]}`}
+                  className="recommend-link"
+                >
+                  <span>
+                    查看更多{detailData.City}
+                    {RecommendLinkTextMap[category]}
+                  </span>
                   <Icon name="arrow-right-r" width="16px" />
                 </Link>
               </div>
