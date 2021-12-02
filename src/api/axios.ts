@@ -1,9 +1,10 @@
 import axios from "axios";
 import getAuthorizationHeader from "./getAuthorizationHeader";
 import type { ApiParameter } from "./types";
+import Links from "@/types/links";
 
 const axiosApi = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_URL,
+  baseURL: Links.PTX_URL,
   headers: getAuthorizationHeader(),
   validateStatus: status => status >= 200 && status < 400
 });
