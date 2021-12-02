@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "@/components/Header";
 import Home from "@/pages/Home";
 import Search from "@/pages/Search";
-// import Detail from "@/pages/Detail";
+import Detail from "@/pages/Detail";
 import Error404 from "@/pages/Error404";
 import Footer from "@/components/Footer";
 import { Category, validCategory } from "@/types/category";
@@ -27,7 +27,15 @@ function App() {
               return validCategoryParam ? <Search /> : <Error404 />;
             }}
           />
-          {/* <Route path="/:category/:id" component={Detail} /> */}
+          <Route
+            path="/:category/:id"
+            render={props => {
+              const validCategoryParam = validCategory.includes(
+                props.match.params.category as Category
+              );
+              return validCategoryParam ? <Detail /> : <Error404 />;
+            }}
+          />
         </Switch>
         <Footer />
       </LoadingProvider>
