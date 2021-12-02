@@ -23,8 +23,9 @@ export const StyledDropdown = styled.div`
 
   ul {
     position: absolute;
+    z-index: 5;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 8px;
     max-height: 450px;
     background-color: ${({ theme }) => theme.color.white};
     border: 1px solid ${({ theme }) => theme.color.border};
