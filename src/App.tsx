@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Header from "@/components/Header";
 import Home from "@/pages/Home";
 import Search from "@/pages/Search";
@@ -11,7 +11,7 @@ import { LoadingProvider } from "@/context/loadingContext";
 
 const App = () => {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <LoadingProvider>
         <Header />
         <Loading />
@@ -39,7 +39,7 @@ const App = () => {
         </Switch>
         <Footer />
       </LoadingProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
