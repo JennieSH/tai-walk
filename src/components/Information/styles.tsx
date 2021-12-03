@@ -18,10 +18,6 @@ export const StyledInformation = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.xl};
     background-color: ${({ theme }) => theme.color["gary-50"]};
 
-    @media (max-width: ${({ theme }) => theme.screens.lg}) {
-      width: auto;
-    }
-
     > div {
       display: flex;
     }

@@ -25,7 +25,6 @@ const generateGlobalStyle = (theme: ThemeType) => {
 
     li {
       list-style: none;
-      box-sizing: border-box;
     }
 
     a {
@@ -34,6 +33,13 @@ const generateGlobalStyle = (theme: ThemeType) => {
 
     input {
       outline: none;
+    }
+
+    li,
+    div,
+    input,
+    section,
+    main {
       box-sizing: border-box;
     }
 
