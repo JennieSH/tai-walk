@@ -26,7 +26,13 @@ const Home = () => {
         page: SearchType.BASE,
         category: Category.ACTIVITY
       });
-      setActivityData(data);
+      if (!data) return;
+
+      setActivityData(
+        data.map(item => {
+          return { ...item, name: item.ActivityName, id: item.ActivityID };
+        })
+      );
     };
 
     const fetchScenicSpot = async () => {
@@ -34,7 +40,13 @@ const Home = () => {
         page: SearchType.BASE,
         category: Category.SCENIC_SPOT
       });
-      setScenicSpotData(data);
+      if (!data) return;
+
+      setScenicSpotData(
+        data.map(item => {
+          return { ...item, name: item.ScenicSpotName, id: item.ScenicSpotID };
+        })
+      );
     };
 
     const fetchRestaurant = async () => {
@@ -42,7 +54,13 @@ const Home = () => {
         page: SearchType.BASE,
         category: Category.RESTAURANT
       });
-      setRestaurantData(data);
+      if (!data) return;
+
+      setRestaurantData(
+        data.map(item => {
+          return { ...item, name: item.RestaurantName, id: item.RestaurantID };
+        })
+      );
     };
 
     fetchActivity();
@@ -69,7 +87,7 @@ const Home = () => {
           {activityData.length &&
             activityData.map(activity => (
               <ActivityCard
-                key={`ac-${activity.ID}`}
+                key={`ac-${activity.id}`}
                 activityCard={activity}
                 category={Category.ACTIVITY}
               />
@@ -89,7 +107,7 @@ const Home = () => {
         <div className="spot-list">
           {scenicSpotData.length &&
             scenicSpotData.map(spot => (
-              <Card key={`spot-${spot.ID}`} card={spot} category={Category.SCENIC_SPOT} />
+              <Card key={`spot-${spot.id}`} card={spot} category={Category.SCENIC_SPOT} />
             ))}
         </div>
       </StyledCardList>
@@ -107,7 +125,7 @@ const Home = () => {
           {restaurantData.length &&
             restaurantData.map(restaurant => (
               <Card
-                key={`restaurant-${restaurant.ID}`}
+                key={`restaurant-${restaurant.id}`}
                 card={restaurant}
                 category={Category.RESTAURANT}
               />

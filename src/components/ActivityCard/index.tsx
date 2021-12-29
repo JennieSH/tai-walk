@@ -9,7 +9,7 @@ const maxTitleCount = 28;
 const ActivityCard = ({ category, activityCard }: ActivityCardProps) => {
   return (
     <StyledActivityCard>
-      <Link to={`/${category}/${activityCard.ID}`} title={activityCard.Name}>
+      <Link to={`/${category}/${activityCard.id}`} title={activityCard.name}>
         <div className="card-img">
           <img
             src={activityCard.Picture.PictureUrl1}
@@ -22,7 +22,7 @@ const ActivityCard = ({ category, activityCard }: ActivityCardProps) => {
             activityCard.EndTime
           )}`}</span>
 
-          <h3 className="card-title">{formatTitle(maxTitleCount, activityCard.Name)}</h3>
+          <h3 className="card-title">{formatTitle(maxTitleCount, activityCard.name)}</h3>
           <div className="card-info">
             <div>
               <Icon name="spot-line" width="16px" />

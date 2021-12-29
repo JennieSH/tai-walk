@@ -4,13 +4,13 @@ import { SearchListProps } from "./types";
 import Pagination from "@/components/Pagination";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import { ScenicSpotCard } from "@/types/tourism";
+import type { SearchDataType } from "@/pages/Search/types";
 
 const itemCount = 20;
 
 const SearchList = ({ searchList, category }: SearchListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentList, setCurrentList] = useState<ScenicSpotCard[]>([]);
+  const [currentList, setCurrentList] = useState<SearchDataType[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,7 +39,7 @@ const SearchList = ({ searchList, category }: SearchListProps) => {
           </div>
         ) : (
           currentList.map(item => (
-            <Card className="search-card" key={`card-${item.ID}`} card={item} category={category} />
+            <Card className="search-card" key={`card-${item.id}`} card={item} category={category} />
           ))
         )}
       </div>

@@ -1,9 +1,9 @@
-import type { ScenicSpotCard } from "@/types/tourism";
 import type { CategoryType } from "@/types/category";
+import type { SearchDataType } from "@/pages/Search/types";
 
 interface SearchListProps {
   category: CategoryType;
-  searchList: ScenicSpotCard[];
+  searchList: SearchDataType[];
 }
 
 export type { SearchListProps };

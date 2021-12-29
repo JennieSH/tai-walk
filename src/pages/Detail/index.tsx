@@ -14,6 +14,30 @@ import { useTourismApi, SearchType } from "@/hooks/useTourismApi";
 
 const tagKeys: ClassKey[] = ["Class", "Class1", "Class2", "Class3"];
 
+const formatSearchData = <T extends TourismBaseCard | TourismDetailInfo>(data: T): T => {
+  if ("ScenicSpotID" in data && "ScenicSpotName" in data) {
+    return {
+      ...data,
+      id: data.ScenicSpotID,
+      name: data.ScenicSpotName || ""
+    };
+  } else if ("RestaurantID" in data && "RestaurantName" in data) {
+    return {
+      ...data,
+      id: data.RestaurantID,
+      name: data.RestaurantName || ""
+    };
+  } else if ("ActivityID" in data && "ActivityName" in data) {
+    return {
+      ...data,
+      id: data.ActivityID,
+      name: data.ActivityName || ""
+    };
+  } else {
+    return data;
+  }
+};
+
 const Detail = () => {
   const [detailData, setDetailData] = useState<TourismDetailInfo | null>(null);
   const [recommendData, setRecommendData] = useState<TourismBaseCard[] | null>(null);
@@ -28,7 +52,7 @@ const Detail = () => {
         id: id
       });
 
-      setDetailData(data[0]);
+      setDetailData(formatSearchData(data[0]));
     };
     fetchDetailData();
   }, [id]);
@@ -41,13 +65,14 @@ const Detail = () => {
         city: CityMap[detailData?.City as CityText]
       });
 
-      setRecommendData(recommendData);
+      setRecommendData(recommendData.map(item => formatSearchData(item)));
     };
 
     if (detailData?.City) {
       fetchRecommendData();
     }
   }, [detailData]);
+
   return (
     <StyledDetail className="container">
       {detailData && (
@@ -55,7 +80,7 @@ const Detail = () => {
           <Breadcrumb
             category={category}
             city={detailData.City as CityText}
-            title={detailData.Name}
+            title={detailData.name}
           />
           <div className="img-container">
             <img
@@ -63,7 +88,7 @@ const Detail = () => {
               alt={detailData.Picture?.PictureDescription1}
             />
           </div>
-          <h1>{detailData.Name}</h1>
+          <h1>{detailData.name}</h1>
           <div className="tag-list">
             {tagKeys.map(
               key =>
@@ -96,7 +121,7 @@ const Detail = () => {
               </div>
               <div className="recommend-list">
                 {recommendData.map(recommend => (
-                  <Card key={`recommed-${recommend.ID}`} card={recommend} category={category} />
+                  <Card key={`recommed-${recommend.id}`} card={recommend} category={category} />
                 ))}
               </div>
             </div>

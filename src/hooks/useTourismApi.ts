@@ -27,25 +27,25 @@ const baseSearchCount = 4;
 const detailSearchCount = 1;
 const baseFilter = "Picture/PictureUrl1 ne null and City ne null";
 const baseOrderBy = "UpdateTime desc";
-const baseSelect = "ID,Name,Address,Picture,City";
+const baseSelect = "Address,Picture,City";
 
 const apiParams: PageComponentParams = {
   [SearchType.BASE]: {
     [Category.ACTIVITY]: {
       $top: baseSearchCount.toString(),
-      $select: "ID,Name,City,Picture",
+      $select: "ActivityID,ActivityName,City,Picture",
       $filter: baseFilter,
       $orderBy: "StartTime desc"
     },
     [Category.SCENIC_SPOT]: {
       $top: baseSearchCount.toString(),
-      $select: baseSelect,
+      $select: `ScenicSpotID,ScenicSpotName,${baseSelect}`,
       $filter: baseFilter,
       $orderBy: `${baseOrderBy},OpenTime asc`
     },
     [Category.RESTAURANT]: {
       $top: baseSearchCount.toString(),
-      $select: baseSelect,
+      $select: `RestaurantID,RestaurantName,${baseSelect}`,
       $filter: baseFilter,
       $orderBy: `${baseOrderBy},OpenTime desc`
     }
@@ -53,17 +53,17 @@ const apiParams: PageComponentParams = {
 
   [SearchType.MULTIPLE]: {
     [Category.ACTIVITY]: {
-      $select: "ID,Name,City,Picture",
+      $select: "ActivityID,ActivityName,City,Picture",
       $filter: baseFilter,
       $orderBy: baseOrderBy
     },
     [Category.SCENIC_SPOT]: {
-      $select: baseSelect,
+      $select: `ScenicSpotID,ScenicSpotName,${baseSelect}`,
       $filter: baseFilter,
       $orderBy: `${baseOrderBy},OpenTime asc`
     },
     [Category.RESTAURANT]: {
-      $select: baseSelect,
+      $select: `RestaurantID,RestaurantName,${baseSelect}`,
       $filter: baseFilter,
       $orderBy: "OpenTime asc"
     }
@@ -105,15 +105,28 @@ const getTargetParams = (payload: TourismPayload): ApiParameter | ApiCityParamet
   const filterConditions: string[] = [baseFilter];
 
   if (city) targetParams = { ...targetParams, city };
-  if (keyword)
-    filterConditions.push(`(contains(Description, '${keyword}') or contains(Name,'${keyword}'))`);
+  if (keyword) filterConditions.push(`contains(Description, '${keyword}')`);
 
   if (date && category === Category.ACTIVITY)
     filterConditions.push(`(date(StartTime) le ${date} and date(EndTime) ge ${date})`);
 
   if (position) targetParams = { ...targetParams, $spatialFilter: `nearby(${position})` };
 
-  if (id) filterConditions.push(`ID eq '${id}'`);
+  if (id) {
+    switch (category) {
+      case Category.ACTIVITY:
+        filterConditions.push(`ActivityID eq '${id}'`);
+        break;
+      case Category.RESTAURANT:
+        filterConditions.push(`RestaurantID eq '${id}'`);
+        break;
+      case Category.SCENIC_SPOT:
+        filterConditions.push(`ScenicSpotID eq '${id}'`);
+        break;
+      default:
+        break;
+    }
+  }
 
   targetParams = {
     ...targetParams,

@@ -26,11 +26,7 @@ interface PointType {
 
 interface ScenicSpotTourismInfo {
   // 景點代碼
-  ID: string;
-  // 景點代碼
   ScenicSpotID: string;
-  // 景點名稱
-  Name?: string;
   //  景點名稱
   ScenicSpotName?: string;
   //  景點特色詳細說明
@@ -83,11 +79,7 @@ interface ScenicSpotTourismInfo {
 
 interface RestaurantTourismInfo {
   // 餐飲店家代碼
-  ID: string;
-  // 餐飲店家代碼
   RestaurantID: string;
-  // 餐飲店家名稱
-  Name?: string;
   // 餐飲店家名稱
   RestaurantName?: string;
   // 店家簡述
@@ -122,11 +114,7 @@ interface RestaurantTourismInfo {
 
 interface ActivityTourismInfo {
   // 活動訊息代碼
-  ID: string;
-  // 活動訊息代碼
   ActivityID: string;
-  // 活動名稱
-  Name?: string;
   // 活動名稱
   ActivityName?: string;
   // 活動簡述

@@ -9,7 +9,7 @@ const maxTitleCount = 15;
 const Card = ({ card, className, category }: CardProps) => {
   return (
     <StyledCard className={className}>
-      <Link to={`/${category}/${card.ID}`} title={card.Name}>
+      <Link to={`/${category}/${card.id}`} title={card.name}>
         <div className="card-img">
           <img
             src={card.Picture.PictureUrl1}
@@ -18,7 +18,7 @@ const Card = ({ card, className, category }: CardProps) => {
           />
         </div>
 
-        <h3 className="card-title">{formatTitle(maxTitleCount, card.Name)}</h3>
+        <h3 className="card-title">{formatTitle(maxTitleCount, card.name)}</h3>
         <div className="card-spot">
           <Icon name="spot-line" width="16px" />
           <span>{card.City}</span>

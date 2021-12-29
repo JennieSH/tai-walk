@@ -19,6 +19,32 @@ import { cityTextList } from "@/constants/city";
 import { categoryPlaceholder } from "@/constants/categoryList";
 import { formatTime } from "@/utils/format";
 
+const formatSearchData = (data: SearchDataType[]): SearchDataType[] => {
+  return data.map(item => {
+    if ("ScenicSpotID" in item && "ScenicSpotName" in item) {
+      return {
+        ...item,
+        id: item.ScenicSpotID,
+        name: item.ScenicSpotName
+      };
+    } else if ("RestaurantID" in item && "RestaurantName" in item) {
+      return {
+        ...item,
+        id: item.RestaurantID,
+        name: item.RestaurantName
+      };
+    } else if ("ActivityID" in item && "ActivityName" in item) {
+      return {
+        ...item,
+        id: item.ActivityID,
+        name: item.ActivityName
+      };
+    } else {
+      return item;
+    }
+  });
+};
+
 const Search = () => {
   const [cityInput, setCityInput] = useState<CityText | null>(null);
   const [dateInput, setDateInput] = useState<Date | null>(null);
@@ -51,7 +77,8 @@ const Search = () => {
       position: position
     });
 
-    setSearchData(data);
+    if (!data) return;
+    setSearchData(formatSearchData(data));
   };
 
   useEffect(() => {
