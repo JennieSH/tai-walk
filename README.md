@@ -1,6 +1,6 @@
 # 台灣走走 - Tai Walk
 
-台灣旅遊景點導覽，串接交通部的 TDX API ，提供台灣景點、活動和餐廳查詢。
+台灣旅遊景點導覽，串接交通部的 [TDX API](https://ptx.transportdata.tw/MOTC/) ，提供台灣景點、活動和餐廳查詢。
 
 ![Tai Walk ](https://i.imgur.com/Xye6bjM.jpg)
 
