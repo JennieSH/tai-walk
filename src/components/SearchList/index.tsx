@@ -16,7 +16,7 @@ const SearchList = ({ searchList, category }: SearchListProps) => {
     window.scrollTo(0, 0);
     const list = searchList.slice((currentPage - 1) * itemCount, currentPage * itemCount);
     setCurrentList(list);
-  }, [currentPage]);
+  }, [currentPage, searchList]);
 
   return (
     <StyledSearchList>
